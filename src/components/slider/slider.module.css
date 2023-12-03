@@ -1,0 +1,47 @@
+/* Adicione este CSS ou ajuste conforme necessário */
+.slider_container {
+  width: 100%;
+  overflow: hidden;
+  background-color: red;
+  min-height: 80dvh;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.active {
+  background-color: red;
+}
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  background-color: green;
+  align-items: center;
+  width: 100%;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.indicators {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.indicator {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: gray;
+  margin: 0 5px;
+  cursor: pointer;
+  padding: 0.5em;
+}
+
+.indicator.active {
+  background-color: black;
+}

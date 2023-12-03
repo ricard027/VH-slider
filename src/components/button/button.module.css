@@ -1,0 +1,12 @@
+.btn {
+  padding: 0.8rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  position: absolute;
+  top: 50%;
+}
