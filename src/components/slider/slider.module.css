@@ -2,19 +2,16 @@
 .slider_container {
   width: 100%;
   overflow: hidden;
-  background-color: red;
   min-height: 80dvh;
   display: flex;
   justify-content: center;
   position: relative;
 }
 .active {
-  background-color: red;
 }
 .slider {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  background-color: green;
   align-items: center;
   width: 100%;
 }
