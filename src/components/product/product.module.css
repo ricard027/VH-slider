@@ -1,0 +1,46 @@
+.slide {
+  min-width: 100%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+.slide_item {
+  width: 50%;
+  flex: 1 1 auto;
+  height: 100%;
+  place-content: center;
+  align-items: start;
+  display: flex;
+  flex-direction: column;
+}
+.slide_item h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.slide_item img {
+  width: 100%;
+  height: 100%;
+}
+
+.slide_item .item_price {
+  font-size: 1.5rem;
+}
+.slide_item .promo {
+  background: linear-gradient(to bottom, green, rgb(22, 167, 22));
+  color: rgb(167, 255, 167);
+  border: solid 1px rgb(112, 207, 112);
+  padding: 1em;
+}
+
+.slide_item .item_price p:first-child {
+  text-decoration: line-through;
+}
+
+.slide_item .item_price p:last-child {
+  font-size: 2rem;
+  font-weight: bolder;
+}

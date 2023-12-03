@@ -1,15 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import styles from './slider.module.css'
 
 import CustomButton from '../button'
+import { Product } from '../../types/product'
+import ProductComponent from '../product'
 
 const SliderComponent = () => {
-  const slides = [
-    { id: 1, title: 'Slide 1', content: 'Conteúdo do Slide 1' },
-    { id: 2, title: 'Slide 2', content: 'Conteúdo do Slide 2' },
-    { id: 3, title: 'Slide 3', content: 'Conteúdo do Slide 3' }
-  ]
+  const [slides, setSlides] = useState<Product[]>([])
+
+  const getProductsToSlider = async () => {
+    try {
+      const res = await fetch('https://desafio.xlow.com.br/search')
+      const data: Product[] = await res.json()
+      setSlides(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getProductsToSlider()
+  }, [])
 
   const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -33,11 +45,8 @@ const SliderComponent = () => {
         className={styles.slider}
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
-        {slides.map((slide) => (
-          <div key={slide.id} className={styles.slide}>
-            <h2>{slide.title}</h2>
-            <p>{slide.content}</p>
-          </div>
+        {slides.map((product: Product) => (
+          <ProductComponent {...product} key={product.productId} />
         ))}
       </div>
 
