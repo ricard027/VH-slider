@@ -11,10 +11,21 @@ const ProductComponent: FunctionComponent<Product> = (product) => {
   return (
     <div key={product.id} className={styles.slide}>
       <div className={styles.slide_item}>
-        <img src={product.image} alt={`product ${product.productName}`} />
+        <img
+          src={product.image}
+          alt={`Produto ${product.productName}`}
+          title={`produto ${product.productName}`}
+        />
       </div>
       <div className={styles.slide_item}>
-        {haspromo && <p className={styles.promo}>OFERTA</p>}
+        {haspromo && (
+          <p
+            className={styles.promo}
+            title={`Produto ${product.productName} está em oferta `}
+          >
+            OFERTA
+          </p>
+        )}
         <h2>{product.productName}</h2>
         <div className={styles.item_price}>
           <p>R${formatPrice(product.listPrice)}</p>
