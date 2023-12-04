@@ -5,8 +5,11 @@ import { Product } from '../../types/product'
 import styles from './product.module.css'
 
 import { formatPrice } from '../../utils/formatprice'
+import { useNavigate } from 'react-router-dom'
 
 const ProductComponent: FunctionComponent<Product> = (product) => {
+  const navigate = useNavigate()
+
   const haspromo = product.bestPrice < product.listPrice
   return (
     <div key={product.id} className={styles.slide}>
@@ -33,6 +36,13 @@ const ProductComponent: FunctionComponent<Product> = (product) => {
             R${formatPrice(product.bestPrice)} {product.measurementUnit}
           </p>
         </div>
+        <button
+          title={`Detalhes do produto ${product.productName}`}
+          className={styles.btn_navigate}
+          onClick={() => navigate(`/produto/${product.productId}`)}
+        >
+          Detalhes do produto
+        </button>
       </div>
     </div>
   )
