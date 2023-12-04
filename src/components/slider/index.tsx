@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
-
 import styles from './slider.module.css'
-
 import CustomButton from '../button'
 import { Product } from '../../types/product'
 import ProductComponent from '../product'
 
 const SliderComponent = () => {
   const [slides, setSlides] = useState<Product[]>([])
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true)
 
   const getProductsToSlider = async () => {
     try {
@@ -23,24 +23,51 @@ const SliderComponent = () => {
     getProductsToSlider()
   }, [])
 
-  const [currentSlide, setCurrentSlide] = useState(0)
+  useEffect(() => {
+    let intervalId: number
+
+    const startAutoScroll = () => {
+      intervalId = setInterval(() => {
+        goToNextSlide()
+      }, 500)
+    }
+
+    const stopAutoScroll = () => {
+      clearInterval(intervalId)
+    }
+
+    if (isAutoScrolling) {
+      startAutoScroll()
+    }
+
+    return () => {
+      stopAutoScroll()
+    }
+  }, [currentSlide, isAutoScrolling, slides])
 
   const goToSlide = (index: number) => {
+    setIsAutoScrolling(false)
     setCurrentSlide(index)
   }
 
   const goToNextSlide = () => {
+    setIsAutoScrolling(false)
     const nextSlide = (currentSlide + 1) % slides.length
     setCurrentSlide(nextSlide)
   }
 
   const goToPrevSlide = () => {
+    setIsAutoScrolling(false)
     const prevSlide = (currentSlide - 1 + slides.length) % slides.length
     setCurrentSlide(prevSlide)
   }
 
   return (
-    <section className={styles.slider_container}>
+    <section
+      className={styles.slider_container}
+      onMouseEnter={() => setIsAutoScrolling(false)}
+      onMouseLeave={() => setIsAutoScrolling(true)}
+    >
       <div
         className={styles.slider}
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -71,4 +98,5 @@ const SliderComponent = () => {
     </section>
   )
 }
+
 export default SliderComponent
