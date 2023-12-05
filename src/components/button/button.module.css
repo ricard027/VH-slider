@@ -2,6 +2,7 @@
   padding: 0.8rem;
   cursor: pointer;
   border-radius: 50%;
+  opacity: 50%;
   display: flex;
   place-items: center;
   justify-content: center;
