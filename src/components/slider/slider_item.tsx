@@ -9,17 +9,14 @@ interface ISliderProps {
 }
 
 const SliderItem: FunctionComponent<ISliderProps> = ({ alt, url, link }) => {
-  const handleRedirect = () => {
-    return window.open(link, '_blank')
-  }
   return (
     <section className={styles.slide}>
-      <div
-        onClick={handleRedirect}
+      <a
+        href={link}
         title='clique na imagem pra ser ser direcionado pra página.'
       >
         <img src={url} alt={alt} />
-      </div>
+      </a>
     </section>
   )
 }
